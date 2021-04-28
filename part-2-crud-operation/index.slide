@@ -61,5 +61,7 @@ The sql package must be used in conjunction with a database driver. See https://
 - https://golang.org/s/sqldrivers 
 - https://www.alexedwards.net/blog/making-and-using-middleware
 - https://medium.com/@apzuk3/input-validation-in-golang-bc24cdec1835
+- https://github.com/Masterminds/squirrel
+- https://github.com/golang-migrate/migrate
 - https://medium.com/hackernoon/golang-clean-archithecture-efd6d7c43047
 - https://blog.xendit.engineer/coding-in-prose-fac4e3c4c265
