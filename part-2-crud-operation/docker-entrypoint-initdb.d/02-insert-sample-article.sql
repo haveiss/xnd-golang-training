@@ -1,0 +1,2 @@
+INSERT INTO article (title, content, created_at) VALUES('Sample Article 1', 'This is sample content 1', NOW());
+INSERT INTO article (title, content, created_at) VALUES('Sample Article 2', 'This is sample content 2', NOW());

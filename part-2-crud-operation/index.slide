@@ -1,0 +1,65 @@
+Golang Training - Beginner Level
+28 April 2021
+
+Part. 2 - CRUD Operation
+
+
+* Tasks
+
+Create and get payment code
+
+- Setup database (Postgres)
+- Create payment code endpoint (POST)
+- Assume that during every creation, we need to include the payment code. So no need to generate a random payment code.
+- the payload details are in the postman collection tests
+- Create get payment code endpoint (GET)
+- the payload details are in the postman collection tests
+- Handle validation
+- Pass all the Postman Test Part. 2
+
+* Objective
+
+- parse JSON
+- handle error
+- data validation
+- CRUD operation
+
+* Handling JSON
+
+
+Go offers built-in support for JSON encoding and decoding, including to and from built-in and custom data types.
+
+https://golang.org/pkg/encoding/json/
+
+*
+.play parse-json.go
+
+* Connection to database
+
+https://golang.org/pkg/database/sql/
+
+Package sql provides a generic interface around SQL (or SQL-like) databases.
+
+The sql package must be used in conjunction with a database driver. See https://golang.org/s/sqldrivers for a list of drivers.
+
+*
+.code connect-db.go /^package/,/^\)/
+
+* 
+.play connect-db.go /func main/,/^}/
+
+* Query from database
+
+.play db-select.go /func main/,/^}/
+
+* Insert operation
+
+.play db-insert.go /func main/,/^}/
+
+* References
+- https://gobyexample.com/json
+- https://golang.org/s/sqldrivers 
+- https://www.alexedwards.net/blog/making-and-using-middleware
+- https://medium.com/@apzuk3/input-validation-in-golang-bc24cdec1835
+- https://medium.com/hackernoon/golang-clean-archithecture-efd6d7c43047
+- https://blog.xendit.engineer/coding-in-prose-fac4e3c4c265
