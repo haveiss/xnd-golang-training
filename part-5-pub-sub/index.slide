@@ -1,0 +1,104 @@
+Golang Training - Beginner Level
+7 July 2021
+
+Part. 5 - PubSub using SQS
+
+* Tasks
+
+- Retrieve inquiry request from the payment partner
+- Receive a payment request from the payment partner
+- Publish successful payment to SQS
+
+* What is Message queue?
+
+Message queuing allows applications to communicate by sending messages to each other. The message queue provides temporary message storage when the destination program is busy or not connected.
+
+.image thumb-mq.jpeg
+
+* Message queuing - a simple use case
+
+Imagine that you have a web service that receives many requests every second, where no request can get lost, and all requests need to be processed by a function that has a high throughput. In other words, the web service always has to be highly available and ready to receive a new request instead of being locked by the processing of previously received requests.
+
+Example use case:
+
+- Sending email
+- Resizing image
+- Converting video
+- Procesing payment
+
+* Example Popular Message Queue
+
+Open Source
+
+- RabbitMQ
+- Kafka
+
+Cloud Services
+
+- Amazon SQS (Will be used as an example)
+- Google Pub/Sub
+
+* Example SQS: Send a Message to a Queue
+
+You must import the relevant Go and AWS SDK for Go packages by adding the following lines.
+
+.code SendMessage.go /^import/,/^\)/
+
+Get the name of the queue from environment variable.
+
+.code SendMessage.go /SQS_QUEUE_NAME/,/\}/
+
+*
+
+Initialize a session that the SDK uses to load credentials from environment variable
+
+.code SendMessage.go /SQS_AWS_REGION/,/}\)/
+
+*
+
+Create a service client and call SendMessage.
+
+.play -edit SendMessage.go /func SendMsg/,/^}/
+
+* Example SQS: Receiving a Message from a Queue
+
+Call the ReceiveMessage function to get the messages in the queue.
+
+.code ReceiveMessage.go /func GetMessages/,/^}/
+
+* 
+
+.play ReceiveMessage.go /= GetMessages/,/Unix.*\n.*/
+
+* Example SQS: Delete a Message from a Queue
+
+Create a service client and call the DeleteMessage function, passing in the name of the queue and the message handle.
+
+.code DeleteMessage.go /func DeleteMessage/,/^}/
+
+* 
+
+.play DeleteMessage.go /= GetMessages/,/DELETED.*\n.*/
+
+* localstack
+
+.image localstack-readme-header.png
+
+https://github.com/localstack/localstack
+
+LocalStack provides an easy-to-use test/mocking framework for developing Cloud applications.
+
+* Using docker-compose
+
+.code docker-compose.yml
+
+* References
+- https://www.cloudamqp.com/blog/what-is-message-queuing.html
+- https://www.rabbitmq.com/
+- https://kafka.apache.org/
+- https://aws.amazon.com/sqs/
+- https://cloud.google.com/pubsub/docs/overview
+- https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/using-sqs-with-go-sdk.html
+- https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/sqs-example-receive-message.html
+- https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/go/sqs
+- https://github.com/localstack/localstack
