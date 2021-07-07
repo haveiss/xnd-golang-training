@@ -38,6 +38,47 @@ Cloud Services
 - Amazon SQS (Will be used as an example)
 - Google Pub/Sub
 
+* What is Amazon SQS?
+
+Amazon Simple Queue Service (Amazon SQS) offers a secure, durable, and available hosted queue that lets you integrate and decouple distributed software systems and components. Amazon SQS offers common constructs such as dead-letter queues and cost allocation tags. It provides a generic web services API that you can access using any programming language that the AWS SDK supports.
+
+Amazon SQS supports both standard and FIFO queues.
+
+* Benefits of using Amazon SQS
+
+- Security – You control who can send messages to and receive messages from an Amazon SQS queue.
+- Server-side encryption (SSE) lets you transmit sensitive data by protecting the contents of messages in queues using keys managed in AWS Key Management Service (AWS KMS).
+- Durability – For the safety of your messages, Amazon SQS stores them on multiple servers. Standard queues support at-least-once message delivery, and FIFO queues support exactly-once message processing.
+- Availability – Amazon SQS uses redundant infrastructure to provide highly-concurrent access to messages and high availability for producing and consuming messages.
+
+* 
+
+- Scalability – Amazon SQS can process each buffered request independently, scaling transparently to handle any load increases or spikes without any provisioning instructions.
+- Reliability – Amazon SQS locks your messages during processing, so that multiple producers can send and multiple consumers can receive messages at the same time.
+- Customization – Your queues don't have to be exactly alike—for example, you can set a default delay on a queue. You can store the contents of messages larger than 256 KB using Amazon Simple Storage Service (Amazon S3) or Amazon DynamoDB, with Amazon SQS holding a pointer to the Amazon S3 object, or you can split a large message into smaller messages.
+
+* Queue types
+
+.image aws-sqs-queue-types.png _ 700
+
+* Amazon SQS dead-letter queues
+
+Amazon SQS supports dead-letter queues, which other queues (source queues) can target for messages that can't be processed (consumed) successfully. Dead-letter queues are useful for debugging your application or messaging system because they let you isolate problematic messages to determine why their processing doesn't succeed. 
+
+  Amazon SQS does not create the dead-letter queue automatically. 
+  You must first create the queue before using it as a dead-letter queue.
+
+.image dead-letter-queue.gif
+
+* What are the benefits of dead-letter queues?
+
+The main task of a dead-letter queue is handling message failure. A dead-letter queue lets you set aside and isolate messages that can’t be processed correctly to determine why their processing didn’t succeed. Setting up a dead-letter queue allows you to do the following:
+
+- Configure an alarm for any messages delivered to a dead-letter queue.
+- Examine logs for exceptions that might have caused messages to be delivered to a dead-letter queue.
+- Analyze the contents of messages delivered to a dead-letter queue to diagnose software or the producer’s or consumer’s hardware issues.
+- Determine whether you have given your consumer sufficient time to process messages.
+
 * Example SQS: Send a Message to a Queue
 
 You must import the relevant Go and AWS SDK for Go packages by adding the following lines.
@@ -98,7 +139,12 @@ LocalStack provides an easy-to-use test/mocking framework for developing Cloud a
 - https://kafka.apache.org/
 - https://aws.amazon.com/sqs/
 - https://cloud.google.com/pubsub/docs/overview
+- https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html
 - https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/using-sqs-with-go-sdk.html
 - https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/sqs-example-receive-message.html
 - https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/go/sqs
 - https://github.com/localstack/localstack
+- https://docs.aws.amazon.com/sdk-for-go/api/service/sqs/#SQS.SendMessage
+- https://docs.aws.amazon.com/sdk-for-go/api/service/sqs/#SQS.ReceiveMessage
+- https://docs.aws.amazon.com/sdk-for-go/api/service/sqs/#SQS.DeleteMessage
+- https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html
